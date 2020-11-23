@@ -1,0 +1,18 @@
+.Workspace {
+    &__container {
+        background-color: red;
+        min-width: 100%;
+        height: 90%;
+    }
+
+    &__channel_container {
+        min-width: 100%;
+        height: 50%;
+        overflow-x: scroll;
+    }
+
+    &__feature_container {
+        width: 100%;
+        height: 50%;
+    }
+}
