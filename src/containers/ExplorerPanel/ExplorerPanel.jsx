@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { ListGroup, ListGroupItem } from 'reactstrap';
 
 import firebase from 'firebase/app';
 
@@ -24,6 +25,14 @@ const ExplorerPanel = () => {
             setShowNotification(false);
         }, 2000);
     }
+
+    useEffect(() => {
+        firebase.storage().ref().child('audio').listAll().then((res) => {
+            res.items.forEach((itemRef) => {
+                console.log(itemRef, itemRef.name);
+            });
+        })
+    }, [])
 
     return (
         <div className="ExplorerPanel__container">

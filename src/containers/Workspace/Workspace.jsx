@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Channel from 'containers/Channel/Channel';
-import ExplorerPanel from 'components/ExplorerPanel/ExplorerPanel';
+import Channel from 'components/Channel/Channel';
+import ExplorerPanel from 'containers/ExplorerPanel/ExplorerPanel';
 import EffectsPanel from 'containers/EffectsPanel/EffectsPanel';
 
 import './Workspace.scss';
