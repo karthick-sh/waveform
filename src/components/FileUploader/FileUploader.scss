@@ -1,0 +1,20 @@
+.FileUploader {
+    &__container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__input {
+        width: 80%;
+        label {
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+
+    &__progress {
+        width: 20%;
+    }
+}

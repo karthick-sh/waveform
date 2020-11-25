@@ -1,5 +1,26 @@
+@import "shared/constants.scss";
 .ExplorerPanel {
     &__container {
-        background-color: bisque;
+        font-family: $text-font;
+        padding: 10px;
+        background-color: $theme-l1;
+        color: white;
+        width: 30%;
+    }
+
+    &__upload_form {
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        width: 100%;
+
+        &_input {
+            display: flex;
+            align-items: center;
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }

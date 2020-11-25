@@ -15,7 +15,6 @@ const Workspace = () => {
             </div>
             <div className="Workspace__feature_container">
                 <ExplorerPanel />
-                <EffectsPanel />
             </div>
         </div>
     )

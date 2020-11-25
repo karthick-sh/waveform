@@ -4,7 +4,7 @@ import './Navbar.scss';
 
 const Navbar = () => {
     return(
-        <div class="Navbar__container">
+        <div className="Navbar__container">
             &nbsp;
         </div>
     )
