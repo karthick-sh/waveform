@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import firebase from 'firebase/app';
 
@@ -8,32 +8,35 @@ import PanelHeading from 'components/PanelHeading/PanelHeading';
 import './ExplorerPanel.scss';
 
 const ExplorerPanel = () => {
-    const onUploadStart = (e, t) => {
-        console.log("Upload start, ", e, t);
+    const [uploadNotification, setUploadNotification] = useState("");
+    const [showNotification, setShowNotification] = useState(false);
+
+    const onUploadStart = (filename) => {
+        setUploadNotification("Uploading " + filename);
+        setShowNotification(true);
     }
-    const onUploadError = (e, t) => {
-        console.log("Upload error, ", e, t);
+    const onUploadError = (filename) => {
+        setUploadNotification("Failed to upload " + filename);
     }
-    const onUploadSuccess = (e) => {
-        console.log("Upload success, ", e);
+    const onUploadSuccess = (filename, downloadLink) => {
+        setUploadNotification("Uploaded " + filename + " successfully!");
+        setTimeout(() => {
+            setShowNotification(false);
+        }, 2000);
     }
-    const onProgress = (e, t) => {
-        console.log("Upload progress, ", e, t);
-    }
+
     return (
         <div className="ExplorerPanel__container">
             <PanelHeading text={"Explorer"} />
             <div className="ExplorerPanel__upload_form">
-                {/* <Input type="file" name="audio" className="ExplorerPanel__upload_form_input" />
-                <Button color="primary">Upload</Button> */}
                 <FileUploader
                     accept="audio/*"
                     storageRef={firebase.storage().ref('audio')}
                     onUploadStart={onUploadStart}
                     onUploadError={onUploadError}
                     onUploadSuccess={onUploadSuccess}
-                    onProgress={onProgress}
                 />
+                <span className={"ExplorerPanel__notification " + (showNotification ? "ExplorerPanel__notification_show" : "")}>{uploadNotification}</span>
             </div>
         </div>
     )

@@ -6,21 +6,24 @@
         background-color: $theme-l1;
         color: white;
         width: 30%;
+
+        
     }
 
     &__upload_form {
         display: flex;
-        justify-content: space-between; 
-        align-items: center;
+        flex-direction: column;
         width: 100%;
+    }
 
-        &_input {
-            display: flex;
-            align-items: center;
-
-            &:focus {
-                outline: none;
-            }
+    &__notification {
+        transition: 0.3s all ease;
+        opacity: 0;
+        width: 100%;
+        will-change: opacity;
+        font-size: small;
+        &_show {
+            opacity: 1;
         }
     }
 }

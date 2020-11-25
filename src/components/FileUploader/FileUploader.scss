@@ -1,3 +1,4 @@
+@import "shared/constants.scss";
 .FileUploader {
     &__container {
         width: 100%;
@@ -8,9 +9,17 @@
 
     &__input {
         width: 80%;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
         label {
             margin: 0;
             margin-left: 10px;
+            font-size: small;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
         }
     }
 

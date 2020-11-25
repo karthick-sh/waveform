@@ -1,3 +1,4 @@
+@import "shared/constants.scss";
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -19,5 +20,9 @@ html, body, #root {
 
 p, h1, h2, h3 {
   margin: 0;
+}
+
+p, label, span, button, a {
+  font-family: $text-font;
 }
 

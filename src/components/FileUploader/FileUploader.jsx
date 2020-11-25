@@ -6,7 +6,7 @@ import ProgressRing from 'components/ProgressRing/ProgressRing';
 
 import './FileUploader.scss';
 
-const FileUploader = ({ storageRef, onUploadSuccess }) => {
+const FileUploader = ({ storageRef, onUploadSuccess, onUploadError, onUploadStart }) => {
     const [filename, setFilename] = useState("Choose File...");
     const [progress, setProgress] = useState(0);
     const [uploadError, setUploadError] = useState(false);
@@ -23,21 +23,27 @@ const FileUploader = ({ storageRef, onUploadSuccess }) => {
     const startUpload = (file) => {
         setUploadError(false);
         setUploadSuccess(false);
+        onUploadStart(file.name);
         let uploadTask = storageRef.child(file.name).put(file);
         // Listen for state changes, errors, and completion of the upload.
         uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, (snapshot) => {
             // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
             const newProgress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
             setProgress(newProgress);
-            console.log('Upload is ' + newProgress + '% done');
         }, (error) => {
             // A full list of error codes is available at
             // https://firebase.google.com/docs/storage/web/handle-errors
             setUploadError(true);
+            onUploadError(file.name);
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                 setUploadSuccess(true);
-                onUploadSuccess(downloadURL);
+                onUploadSuccess(file.name, downloadURL);
+                setTimeout(() => {
+                    setProgress(0);
+                    setUploadSuccess(false);
+                    setFilename("Choose File...");
+                }, 2000);
             });
         });
     }
